@@ -1,0 +1,10 @@
+%q0 = [ 3.4418   -0.9626    1.5597   -2.1679    1.5708   -1.8710];
+qr = [3.1416         0         0         0    1.5708         0];
+dq=zeros(1,6);
+qlist = q0;
+dqlist=dq;
+%% Euler  Integral Parameters;
+endTime = 20;
+steps = 2000;
+dt = endTime/steps;
+t=0;

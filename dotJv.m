@@ -1,0 +1,16 @@
+%*************************************************************************
+%   > File Name: dotJv.m
+%   > Author: lsqyRobot
+%   > Mail: lsqyRobot@gmail.com 
+%   > Created Time: Fri Mar  6 20:33:00 2020
+%***********************************************************************/
+
+function jvDot = dotJv(q,dq)
+a=[0,-0.425,-0.39225,0,0,0];
+d=[0.089459,0,0,0.10915,0.09465,0.0823];
+[q1,q2,q3,q4,q5,~]=deal(q(1),q(2),q(3),q(4),q(5),q(6));
+[dq1,dq2,dq3,dq4,dq5,~]=deal(dq(1),dq(2),dq(3),dq(4),dq(5),dq(6));
+jvDot(1,:)=[-dq1*cos(q1)*(a(3)*cos(q2+q3)+a(2)*cos(q2)-d(6)*sin(q5)*cos(q2+q3+q4)+d(5)*sin(q2+q3+q4))-sin(q1)*(-a(3)*(dq2+dq3)*sin(q2+q3)-a(2)*dq2*sin(q2)+d(6)*sin(q5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(6)*dq5*cos(q5)*cos(q2+q3+q4))-dq1*sin(q1)*(d(6)*cos(q5)+d(4))-d(6)*dq5*cos(q1)*sin(q5),cos(q1)*(-a(3)*(dq2+dq3)*cos(q2+q3)+a(2)*(-dq2)*cos(q2)+d(6)*sin(q5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(6)*dq5*cos(q5)*sin(q2+q3+q4))-dq1*sin(q1)*(-a(3)*sin(q2+q3)-a(2)*sin(q2)+d(6)*sin(q5)*sin(q2+q3+q4)+d(5)*cos(q2+q3+q4)),cos(q1)*(a(3)*(-(dq2+dq3))*cos(q2+q3)+d(6)*sin(q5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(6)*dq5*cos(q5)*sin(q2+q3+q4))-dq1*sin(q1)*(-a(3)*sin(q2+q3)+d(6)*sin(q5)*sin(q2+q3+q4)+d(5)*cos(q2+q3+q4)),cos(q1)*(d(6)*sin(q5)*(dq2+dq3+dq4)*cos(q2+q3+q4)+d(5)*(-(dq2+dq3+dq4))*sin(q2+q3+q4)+d(6)*dq5*cos(q5)*sin(q2+q3+q4))-dq1*sin(q1)*(d(6)*sin(q5)*sin(q2+q3+q4)+d(5)*cos(q2+q3+q4)),d(6)*dq1*sin(q1)*cos(q5)*cos(q2+q3+q4)-d(6)*dq1*cos(q1)*sin(q5)+d(6)*cos(q1)*cos(q5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(6)*dq5*cos(q1)*sin(q5)*cos(q2+q3+q4)+d(6)*(-dq5)*sin(q1)*cos(q5),0];
+jvDot(2,:)=[-dq1*sin(q1)*(a(3)*cos(q2+q3)+a(2)*cos(q2)-d(6)*sin(q5)*cos(q2+q3+q4)+d(5)*sin(q2+q3+q4))+cos(q1)*(-a(3)*(dq2+dq3)*sin(q2+q3)-a(2)*dq2*sin(q2)+d(6)*sin(q5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(6)*dq5*cos(q5)*cos(q2+q3+q4))+dq1*cos(q1)*(d(6)*cos(q5)+d(4))-d(6)*dq5*sin(q1)*sin(q5),dq1*cos(q1)*(-a(3)*sin(q2+q3)-a(2)*sin(q2)+d(6)*sin(q5)*sin(q2+q3+q4)+d(5)*cos(q2+q3+q4))+sin(q1)*(-a(3)*(dq2+dq3)*cos(q2+q3)+a(2)*(-dq2)*cos(q2)+d(6)*sin(q5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(6)*dq5*cos(q5)*sin(q2+q3+q4)),dq1*cos(q1)*(-a(3)*sin(q2+q3)+d(6)*sin(q5)*sin(q2+q3+q4)+d(5)*cos(q2+q3+q4))+sin(q1)*(a(3)*(-(dq2+dq3))*cos(q2+q3)+d(6)*sin(q5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(6)*dq5*cos(q5)*sin(q2+q3+q4)),dq1*cos(q1)*(d(6)*sin(q5)*sin(q2+q3+q4)+d(5)*cos(q2+q3+q4))+sin(q1)*(d(6)*sin(q5)*(dq2+dq3+dq4)*cos(q2+q3+q4)+d(5)*(-(dq2+dq3+dq4))*sin(q2+q3+q4)+d(6)*dq5*cos(q5)*sin(q2+q3+q4)),-d(6)*dq1*cos(q1)*cos(q5)*cos(q2+q3+q4)-d(6)*dq1*sin(q1)*sin(q5)+d(6)*sin(q1)*cos(q5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(6)*dq5*sin(q1)*sin(q5)*cos(q2+q3+q4)+d(6)*dq5*cos(q1)*cos(q5),0];
+jvDot(3,:)=[0,-a(3)*(dq2+dq3)*sin(q2+q3)-a(2)*dq2*sin(q2)+d(6)*sin(q5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(6)*dq5*cos(q5)*cos(q2+q3+q4),-a(3)*(dq2+dq3)*sin(q2+q3)+d(6)*sin(q5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(6)*dq5*cos(q5)*cos(q2+q3+q4),d(6)*sin(q5)*(dq2+dq3+dq4)*sin(q2+q3+q4)+d(5)*(dq2+dq3+dq4)*cos(q2+q3+q4)-d(6)*dq5*cos(q5)*cos(q2+q3+q4),d(6)*dq5*sin(q5)*sin(q2+q3+q4)-d(6)*cos(q5)*(dq2+dq3+dq4)*cos(q2+q3+q4),0];
+end
