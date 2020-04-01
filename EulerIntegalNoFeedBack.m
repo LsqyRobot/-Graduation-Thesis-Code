@@ -7,7 +7,7 @@ dq=[2.7206   0.5421   -5.3546   0   0  0];
 qlist = q;
 dqlist=dq;
 %% Euler  Integral Parameters;
-endTime = 1;
+endTime = 20;
 % steps = 100000;
 % dt = endTime/steps;
 dt = 2e-3;
@@ -20,7 +20,7 @@ for i = 1:steps
     %ddq=M(q)\(Q(q,dq)+Qc_mod(q,dq,50,50,t));
     qlist = [qlist;q];
     dqlist=[dqlist;dq];
-    q = q + dq*t;
+    q = q + dq*dt;
     dq = dq + ddq'*dt;
     t = t + dt;
 end

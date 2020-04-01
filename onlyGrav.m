@@ -1,10 +1,30 @@
-%q0 = [ 3.4418   -0.9626    1.5597   -2.1679    1.5708   -1.8710];
-qr = [3.1416         0         0         0    1.5708         0];
-dq=zeros(1,6);
-qlist = q0;
-dqlist=dq;
-%% Euler  Integral Parameters;
-endTime = 20;
-steps = 2000;
+%% The motion of the manipulator only influenced by gravity
+clear all
+clc
+close all
+warning off
+tic
+q = rand(1,6);
+dq = zeros(1,6);
+endTime = 3;
+steps = 100000;
 dt = endTime/steps;
-t=0;
+[qlist, dqlist] = deal(zeros(length(0:dt:endTime),6));
+qlist(1,:) = q;
+dqlist(1,:) =dq;
+ur5_model;
+for i = 1:steps
+%     ddq=M(q)\(Q(q,dq));
+%     dq = dq + ddq'*dt;
+%     q = q + dq*dt;
+%     qlist(i+1,:) = q;
+%     dqlist(i+1,:)=dq;
+sample = rand(12,1);
+t=rand();
+ddq_a(sample,t)
+end
+toc
+% this.qList = qlist;
+% this.dqList = dqlist;
+% this.endTime = endTime;
+% plotFunction(this,'pose')

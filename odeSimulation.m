@@ -1,3 +1,7 @@
+%{
+    Since this simulation process costed much time than my expected,
+    the key data was saved as method.mat
+%}
 clc
 clear all
 close all
@@ -21,11 +25,11 @@ dq=[2.7206   0.5421   -5.3546   0   0  0];
 
 q0=[q,dq]; 
 % Braun Case
-%[~,y]= ode15s(@(t,q)Braun_ddq(q,t),tspan,q0);
+[~,y]= ode15s(@(t,q)Braun_ddq(q,t),tspan,q0);
 
 % myCase
 %[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0);
-[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0,opts);
+%[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0,opts);
 
 
 % figure
