@@ -2,16 +2,47 @@
 
     opts:   1)pose
             2)desiredMotion
-
+            3)noise //three parameters, and time limit is [0,10]
+            4)track
 
 %}
 
 
-function plotFunction(model,opt)
-qList = model.qList;
-dqList = model.dqList;
-endTime = model.endTime;
-tspan=linspace(0,endTime,length(qList));
+function plotFcn(model,opt)
+try
+    qList = model.qList;
+    dqList = model.dqList;
+    endTime = model.endTime;
+    tspan=linspace(0,endTime,length(qList));
+end
+
+try
+    qList = model.qlist;
+    dqList = model.dqlist;
+    endTime = model.endTime;
+    tspan=linspace(0,endTime,length(qList));
+end
+
+
+try
+    tp = model.tp;
+    fat = model.fat;
+    peak = model.peak;
+end
+    
+if strcmp(opt,'noise')
+    t = 0:0.01:10;
+    noiseList = arrayfun(@(t)noise(t,tp,peak,fat),t);
+    plot(t,noiseList,'g--','LineWidth',1)
+    xlabel('t/s')
+    ylabel('noise/rad')
+end
+    
+
+
+
+
+    
 ur5_model;
 if strcmp(opt, 'pose')
     pose = zeros(length(qList),6);
@@ -29,8 +60,7 @@ if strcmp(opt, 'pose')
     end
 end
 
-
-if strcmp(opt, 'pose')
+if strcmp(opt, 'track')
     [rx,ry,rz] = GetDesiredMotion(tspan);
     pose = zeros(length(qList),6);
     for i = 1:length(qList)
@@ -47,10 +77,7 @@ if strcmp(opt, 'pose')
     hold off
     end
 end
-% 
-% end
-% 
-% if plotPhi==1 && ~isempty(dqList)
+
 % phiList=zeros(3,length(qList));
 % dphiList=zeros(3,length(qList));
 % % [rx,ry,rz] = GetDesiredMotion(tspan);

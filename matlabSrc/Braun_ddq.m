@@ -1,7 +1,10 @@
-function braun_ddq= Braun_ddq(sample,t)
-h=1e-3;
-%h=1e-4;  %Time Cost: 3958.799124 seconds. %q0 dq0 + 0.2 -> 3979 seconds in
-%MacBookPro
+function braun_ddq= Braun_ddq(sample,t,opts)
+h=opts.h;
+try
+  tp = opts.tp;  
+  peak = opts.peak;
+  fat = opts.fat;
+end
 q=sample(1:6);
 qdot=sample(7:12);
 v=qdot;
