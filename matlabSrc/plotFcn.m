@@ -33,6 +33,7 @@ end
 if strcmp(opt,'noise')
     t = 0:0.01:10;
     noiseList = arrayfun(@(t)noise(t,tp,peak,fat),t);
+    figure
     plot(t,noiseList,'g--','LineWidth',1)
     xlabel('t/s')
     ylabel('noise/rad')

@@ -9,7 +9,6 @@ s.t.
 %}
 clear  all
 clc
-close all
 Nvars = 24 + 1;  
 lb1 = (-2*pi)*ones(1,12);  % Joint limit(q,qa) limit
 ub1 = ( 2*pi)*ones(1,12);
@@ -21,15 +20,17 @@ lb = [lb1, lb2, lb3];
 ub = [ub1, ub2, ub3];
 %{
  GA toolbox, by the way, File-Exchange have lots of optimal algorithm, some are great, some are not(/doge).
- How to use GA toolbox? :help ga :)
+ First find the min of lambda, and return lambda find the max of beta.
+ How to use GA toolbox? :help ga 
 %}
-opts = gaoptimset('PopulationSize',100,'EliteCount',20,'CrossoverFraction',0.65,'Generations',200,'StallGenLimit',300,'TolFun',1e-50,'PlotFcns',@gaplotbestf);
+opts = gaoptimset('PopulationSize',100,'EliteCount',20,'CrossoverFraction',0.65,'Generations',200,'StallGenLimit',300,'TolFun',1e-3,'PlotFcns',@gaplotbestf);
 tic
 [~, lambda_min] = ga(@(x)optimal_lambda(x),Nvars,[],[],[],[],lb,ub,@(x)constraint(x),opts);
 [~, beta_max] = ga(@(x)optimal_beta(x,lambda_min),Nvars,[],[],[],[],lb,ub,@(x)constraint(x),opts);
 toc 
 
 %lambda_min  = 0.274325; beta_max = 1.4336e+03 
+%% the beta cost lots of time!!! T_T
 
 
 saveFile = 'GAToolBox.mat';
