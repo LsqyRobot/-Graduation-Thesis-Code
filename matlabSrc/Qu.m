@@ -9,6 +9,6 @@ epsilon=1e-4;
 % lambda_min=min(eig(A/(Ma)*pinv(A)));
 % beta = ( norm(A)*norm(deltaDDotQ)+(norm(dotJv(qa,dqa))+k*(norm(A)))*norm(dphi(qa,dqa,t)))/lambda_min;
 %% by using optimal algorithm obtain the parameters 
-beta=1440;
+beta=1540;
 s = dphi(qa,dqa,t) + k*phi(qa,t);
 Qu = -beta*pinv(A)*(s/epsilon);

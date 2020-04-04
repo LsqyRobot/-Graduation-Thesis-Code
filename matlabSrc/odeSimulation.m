@@ -12,7 +12,7 @@ if isempty(gcp('nocreate'))
 end
 tic
 dt=1e-3;
-endTime=0.1;
+endTime=10;
 tspan =0:dt:endTime;
 opts = odeset('RelTol',1e-11,'AbsTol',1e-11); 
 
@@ -28,30 +28,46 @@ noiseSet.tp = 2;
 noiseSet.peak=0.2;      %if peak is zero, means no noise on manipulator
 noiseSet.fat = 10;
 
-[~,y]= ode15s(@(t,q)Braun_ddq(q,t,noiseSet),tspan,q0);
+%[~,y]= ode15s(@(t,q)Braun_ddq(q,t,noiseSet),tspan,q0);
 
 % myCase
-%[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0);
+[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0);
 %[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0,opts);
 
 
 toc
 qlist=y(:,1:6);
 dqlist=y(:,7:12);
-thiscase.qlist = qlist;
-thiscase.dqlist = dqlist;
-thiscase.endTime = endTime;
-plotFcn(thiscase,'track')
+% thiscase.qlist = qlist;
+% thiscase.dqlist = dqlist;
+% thiscase.endTime = endTime;
+% plotFcn(thiscase,'track')
+% 
+% 
+% plotFcn(noiseSet,'noise')
+% hold on 
+% disSet.tp = 1;
+% disSet.fat = 5;
+% disSet.peak = 0.2;
+% plotFcn(disSet,'noise')
+
+saveFile = 'k10epMin4Case1.mat';
+save(saveFile,'qlist','dqlist');
 
 
-plotFcn(noiseSet,'noise')
-hold on 
-disSet.tp = 1;
-disSet.fat = 5;
-disSet.peak = 0.2;
-plotFcn(disSet,'noise')
 
-% saveFile = 'bugTest.mat';
-% save(saveFile,'qlist','dqlist');
+
+
+load k1epMinus4.mat
+k1epMinus4.qList = qlist;
+k1epMinus4.dqList = dqlist;
+k1epMinus4.endTime = endTime;
+plotFcn(k1epMinus4,'phi')
+
+load k10epMinus4.mat
+k10epMinus4.qList = qlist;
+k10epMinus4.dqList = dqlist;
+k10epMinus4.endTime = endTime;
+plotFcn(k10epMinus4,'phi')
 
 

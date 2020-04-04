@@ -1,12 +1,12 @@
-%{
-Assuming noise peak is 0.2(rad) on joint/joint velocity?Just test in joint two, and the computation is much slowly than my predict
-s.t.
-          (1)abs(q-qa) < 0.2;
-          (2)abs(dq-dqa) < 0.2 ;
-          (3)t<=10;
-          (4)q/qa \in [-2*pi,2*pi], dq/dqa \in [-pi, pi]
-          Of course, Other optimal algorithm can also using in here.(^_^)
-%}
+% %{
+% Assuming noise peak is 0.2(rad) on joint/joint velocity?Just test in joint two, and the computation is much slowly than my predict
+% s.t.
+%           (1)abs(q-qa) < 0.2;
+%           (2)abs(dq-dqa) < 0.2 ;
+%           (3)t<=10;
+%           (4)q/qa \in [-2*pi,2*pi], dq/dqa \in [-pi, pi]
+%           Of course, Other optimal algorithm can also using in here.(^_^)
+% %}
 clear  all
 clc
 close all
@@ -23,17 +23,21 @@ ub = [ub1, ub2, ub3];
  GA toolbox, by the way, File-Exchange have lots of optimal algorithm, some are great, some are not(/doge).
  How to use GA toolbox? :help ga :)
 %}
-opts = gaoptimset('PopulationSize',100,'EliteCount',20,'CrossoverFraction',0.65,'Generations',200,'StallGenLimit',300,'TolFun',1e-50,'PlotFcns',@gaplotbestf);
+opts = gaoptimset('PopulationSize',100,'EliteCount',20,'CrossoverFraction',0.85,'Generations',200,'StallGenLimit',300,'TolFun',1e-20,'PlotFcns',@gaplotbestf);
 tic
-[~, lambda_min] = ga(@(x)optimal_lambda(x),Nvars,[],[],[],[],lb,ub,@(x)constraint(x),opts);
-[~, beta_max] = ga(@(x)optimal_beta(x,lambda_min),Nvars,[],[],[],[],lb,ub,@(x)constraint(x),opts);
+[x_lambda, lambda_min] = ga(@(x)optimal_lambda(x),Nvars,[],[],[],[],lb,ub,@(x)constraint(x),opts);
+[x_beta, beta_max] = ga(@(x)optimal_beta(x,lambda_min),Nvars,[],[],[],[],lb,ub,@(x)constraint(x),opts);
 toc 
 
-%lambda_min  = 0.274325; beta_max = 1.4336e+03 
+%lambda_min  = 0.274325; beta_max = 1.5394e+03 < 1540
 
 
 saveFile = 'GAToolBox.mat';
 save(saveFile,'lambda_min','beta_max')
+
+
+
+
 
 function lambda_min = optimal_lambda(sample) 
 q = sample(1:6);

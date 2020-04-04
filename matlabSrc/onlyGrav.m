@@ -4,7 +4,7 @@ clc
 close all
 warning off
 tic
-q = rand(1,6);
+q = rand(1,6);  %replace it
 dq = zeros(1,6);
 endTime = 3;
 steps = 2000;
