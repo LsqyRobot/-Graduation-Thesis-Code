@@ -1,6 +1,6 @@
-function Qu = Qu(q,dq,qa,dqa,t)
-k=10;
-epsilon=1e-4; 
+function Qu = Qu(qa,dqa,t)
+k=1;
+epsilon=1e-2; 
 %% 
 % Ma = M(qa);
 % Qa = Q(qa,dqa);

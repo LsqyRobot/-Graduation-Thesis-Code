@@ -24,15 +24,14 @@ case1.dq=[2.7206   0.5421   -5.3546   0   0  0];
 case2.q = [ -2.8414  -0.9626    1.5597   -2.1679    1.5708   -1.8710]+0.2;
 case2.dq=[2.7206   0.5421   -5.3546   0   0  0]+0.2;
 q0=[case1.q,case1.dq]; 
-noiseSet.tp = 2;
-noiseSet.peak=0.2;      %if peak is zero, means no noise on manipulator
-noiseSet.fat = 10;
+% noiseSet.tp = 2;
+% noiseSet.peak=0.2;      %if peak is zero, means no noise on manipulator
+% noiseSet.fat = 10;
 
 %[~,y]= ode15s(@(t,q)Braun_ddq(q,t,noiseSet),tspan,q0);
 
 % myCase
-[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0);
-%[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0,opts);
+[t,y]= ode15s(@(t,q)ddq_a(q,t),tspan,q0,opts);
 
 
 toc
@@ -51,23 +50,13 @@ dqlist=y(:,7:12);
 % disSet.peak = 0.2;
 % plotFcn(disSet,'noise')
 
-saveFile = 'k10epMin4Case1.mat';
+saveFile = 'unknown.mat';
 save(saveFile,'qlist','dqlist');
 
 
 
 
 
-load k1epMinus4.mat
-k1epMinus4.qList = qlist;
-k1epMinus4.dqList = dqlist;
-k1epMinus4.endTime = endTime;
-plotFcn(k1epMinus4,'phi')
 
-load k10epMinus4.mat
-k10epMinus4.qList = qlist;
-k10epMinus4.dqList = dqlist;
-k10epMinus4.endTime = endTime;
-plotFcn(k10epMinus4,'phi')
 
 
