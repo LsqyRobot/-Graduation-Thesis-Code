@@ -12,7 +12,7 @@ if isempty(gcp('nocreate'))
 end
 tic
 dt=1e-3;
-endTime=10;
+endTime=1;
 tspan =0:dt:endTime;
 opts = odeset('RelTol',1e-11,'AbsTol',1e-11); 
 
@@ -21,8 +21,8 @@ opts = odeset('RelTol',1e-11,'AbsTol',1e-11);
 case1.q = [ -2.8414  -0.9626    1.5597   -2.1679    1.5708   -1.8710];
 case1.dq=[2.7206   0.5421   -5.3546   0   0  0];
 %case2
-case2.q = [ -2.8414  -0.9626    1.5597   -2.1679    1.5708   -1.8710]+0.2;
-case2.dq=[2.7206   0.5421   -5.3546   0   0  0]+0.2;
+% case2.q = [ -2.8414  -0.9626    1.5597   -2.1679    1.5708   -1.8710]+0.2;
+% case2.dq=[2.7206   0.5421   -5.3546   0   0  0]+0.2;
 q0=[case1.q,case1.dq]; 
 % noiseSet.tp = 2;
 % noiseSet.peak=0.2;      %if peak is zero, means no noise on manipulator
@@ -37,10 +37,10 @@ q0=[case1.q,case1.dq];
 toc
 qlist=y(:,1:6);
 dqlist=y(:,7:12);
-% thiscase.qlist = qlist;
-% thiscase.dqlist = dqlist;
-% thiscase.endTime = endTime;
-% plotFcn(thiscase,'track')
+thiscase.qlist = qlist;
+thiscase.dqlist = dqlist;
+thiscase.endTime = endTime;
+plotFcn(thiscase,'Qu')
 % 
 % 
 % plotFcn(noiseSet,'noise')

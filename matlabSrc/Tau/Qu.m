@@ -12,3 +12,7 @@ epsilon=1e-2;
 beta=1540;
 s = dphi(qa,dqa,t) + k*phi(qa,t);
 Qu = -beta*pinv(A)*(s/epsilon);
+Qu(Qu>1000)=1000;
+Qu(Qu<-1000)=-1000;
+
+
