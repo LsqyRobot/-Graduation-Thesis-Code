@@ -52,9 +52,6 @@ if strcmp(opt,'noise')
 end
     
 
-
-
-
     
 ur5_model;
 if strcmp(opt, 'pose')
@@ -63,12 +60,12 @@ if strcmp(opt, 'pose')
         pose(i,:)= ur5FK(qList(i,:));
     end
         [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
-        figure
+        %figure
         for i = 1:10:length(qList)
         ur5.plot(qList(i,:))
         hold on   
         plot3(px(1:i),py(1:i),pz(1:i),'r-', 'LineWidth',0.1)
-        title(['(Euler integal method) Time is: '  num2str(i*endTime/length(qList))])
+        %title(['(Euler integal method) Time is: '  num2str(i*endTime/length(qList))])
         hold off
         end
 end
@@ -80,7 +77,7 @@ if strcmp(opt, 'track')
         pose(i,:)= ur5FK(qList(i,:));
     end
     [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
-    figure
+    %figure
     for i = 1:10:length(qList)
     ur5.plot(qList(i,:))
     hold on
@@ -103,7 +100,7 @@ end
 
 [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
 
-figure
+%figure
 hold on
 grid on
 plot3(rx,ry,rz,'g-', 'LineWidth',1.5);

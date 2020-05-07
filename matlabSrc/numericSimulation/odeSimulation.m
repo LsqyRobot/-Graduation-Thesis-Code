@@ -6,10 +6,10 @@
 clc
 clear all
 close all
-dbstop if error
-if isempty(gcp('nocreate'))
-    parpool;
-end
+% dbstop if error
+% if isempty(gcp('nocreate'))
+%     parpool;
+% end
 tic
 dt=1e-3;
 endTime=1;

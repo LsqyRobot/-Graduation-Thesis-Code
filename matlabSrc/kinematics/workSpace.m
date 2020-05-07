@@ -1,7 +1,7 @@
 %workSpace
-clear all
-clc
-close all
+% clear all
+% clc
+% close all
 positionList = [];
 eulerAngleList = [];
 theta_min = -2*pi;
@@ -16,8 +16,7 @@ end
 [x,y,z]=deal(positionList(:,1),positionList(:,2),positionList(:,3));
 [alpha,beta,gamma]=deal(eulerAngleList(:,1),eulerAngleList(:,2),eulerAngleList(:,3));
 
-figure
-subplot(1,2,1)
+
 scatter3(x,y,z,...
         'MarkerEdgeColor','k',...
         'MarkerFaceColor',[0 .75 .75],...
@@ -43,7 +42,6 @@ view(-60,10)
 %%
 
 figure
-% subplot(1,2,1)
 scatter3(x,y,0*z,...
         'MarkerEdgeColor','k',...
         'MarkerFaceColor','r',...

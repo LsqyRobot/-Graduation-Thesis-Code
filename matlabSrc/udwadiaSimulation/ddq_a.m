@@ -9,3 +9,4 @@ dv=M(qa)\(Q(qa,v)+Qc(q,v,t)+Qu(qa,dqa,t));
 q_dq=[v,dv];
 q_dq=q_dq(:);
 disp(['Time is: ' num2str(t) 's'])     %% much slowly than you image.
+end

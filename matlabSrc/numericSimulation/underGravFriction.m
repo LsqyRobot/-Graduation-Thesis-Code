@@ -13,8 +13,10 @@ dt = endTime/steps;
 qlist(1,:) = q;
 dqlist(1,:) =dq;
 ur5_model;
+fv = 0.1;
+fc = 0.2;
 for i = 1:steps
-    ddq=M(q)\(Q(q,dq));
+    ddq=M(q)\(Q(q,dq) - Fri(0.5,0.1,dq));
     dq = dq + ddq'*dt;
     q = q + dq*dt;
     qlist(i+1,:) = q;
@@ -27,6 +29,6 @@ this.dqList = dqlist;
 this.endTime = endTime;
 plotFcn(this,'pose')
 
-saveName = 'onlyGrav';
-savePath = './matFile/';
+saveName = 'frictionData31';
+savePath = '../matFile/';
 save([savePath saveName],'qlist','dqlist','endTime')
