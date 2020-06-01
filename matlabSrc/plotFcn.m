@@ -31,6 +31,8 @@ try
     epsilon = model.epsilon;
 end
 
+speed = floor(0.002*length(qList));
+
 if strcmp(opt,'Qu')
 Q_u = zeros(length(qList),6);
 for i = 1:length(qList) 
@@ -43,7 +45,7 @@ end
 
     
 if strcmp(opt,'noise')
-    t = 0:0.01:10;
+    t = 0:0.005:10;
     noiseList = arrayfun(@(t)noise(t,tp,peak,fat),t);
     figure
     plot(t,noiseList,'g--','LineWidth',1)
@@ -61,16 +63,17 @@ if strcmp(opt, 'pose')
     end
         [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
         %figure
-        for i = 1:10:length(qList)
+        for i = 1:speed:length(qList)
         ur5.plot(qList(i,:))
         hold on   
         plot3(px(1:i),py(1:i),pz(1:i),'r-', 'LineWidth',0.1)
-        %title(['(Euler integal method) Time is: '  num2str(i*endTime/length(qList))])
+        title(['Time is: '  num2str(i*endTime/length(qList)) 's'])
         hold off
         end
 end
 
 if strcmp(opt, 'track')
+    
     [rx,ry,rz] = GetDesiredMotion(tspan);
     pose = zeros(length(qList),6);
     for i = 1:length(qList)
@@ -78,7 +81,7 @@ if strcmp(opt, 'track')
     end
     [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
     %figure
-    for i = 1:10:length(qList)
+    for i = 1:speed:length(qList)
     ur5.plot(qList(i,:))
     hold on
     plot3(rx(1:i),ry(1:i),rz(1:i),'g-', 'LineWidth',1.5)
@@ -100,7 +103,7 @@ end
 
 [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
 
-%figure
+
 hold on
 grid on
 plot3(rx,ry,rz,'g-', 'LineWidth',1.5);

@@ -68,12 +68,12 @@ fig.friction2=uicontrol('Parent',fig.robot, ...
          'busyaction','cancel',...
          'interrupt','off');   
      
- fig.friction2=uicontrol('Parent',fig.robot, ...
+fig.friction2=uicontrol('Parent',fig.robot, ...
          'style','push',...
          'Units','normalized',...
-         'position',[0.9,0.55,0.08,0.05],...
-         'string','Teach',...
-         'callback',{@teachRobot},...
+         'position',[0.82,0.65,0.08,0.05],...
+         'string','PD control',...
+         'callback',{@pd},...
          'backgroundc',[0.94 .94 .94],...
          'busyaction','cancel',...
          'interrupt','off');  
@@ -87,6 +87,7 @@ end
 
 function onlyGrav(~,~)
 delete(gca)
+robotInit;
 load onlyGrav
 this.qlist = qlist;
 this.dqlist = dqlist;
@@ -102,6 +103,8 @@ end
 
 
 function ncuPlot(~,~)
+delete(gca)
+robotInit;
 load c304Data
 this.qlist = q;
 this.dqlist = [];
@@ -112,6 +115,7 @@ end
 
 
 function friction1(~,~)
+delete(gca)
 load frictionData11.mat
 this.qlist = qlist;
 this.dqlist = [];
@@ -120,6 +124,7 @@ plotFcn(this,'pose');
 end
 
 function friction2(~,~)
+delete(gca)
 load frictionData31.mat
 this.qlist = qlist;
 this.dqlist = [];
@@ -128,10 +133,15 @@ plotFcn(this,'pose');
 end
 
 
-function teachRobot(~,~)
-ur5_model;
-qz = zeros(1,6);
-ur5.teach(qz);
+
+function pd(~,~)
+delete(gca)
+load pdControl.mat
+this.qlist = qlist;
+this.dqlist = [];
+this.endTime = [];
+plotFcn(this,'pose');
 end
+
 
 
