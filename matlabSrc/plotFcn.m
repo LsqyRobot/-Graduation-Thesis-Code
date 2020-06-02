@@ -31,7 +31,13 @@ try
     epsilon = model.epsilon;
 end
 
-speed = floor(0.002*length(qList));
+try
+    speed = floor(0.01*length(qList));
+catch
+    speed = floor(0.01*length(qlist));
+end
+
+    
 
 if strcmp(opt,'Qu')
 Q_u = zeros(length(qList),6);
@@ -62,12 +68,10 @@ if strcmp(opt, 'pose')
         pose(i,:)= ur5FK(qList(i,:));
     end
         [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
-        %figure
         for i = 1:speed:length(qList)
         ur5.plot(qList(i,:))
         hold on   
-        plot3(px(1:i),py(1:i),pz(1:i),'r-', 'LineWidth',0.1)
-        title(['Time is: '  num2str(i*endTime/length(qList)) 's'])
+        plot3(px(1:i),py(1:i),pz(1:i),'r-', 'LineWidth',1)
         hold off
         end
 end
@@ -86,7 +90,7 @@ if strcmp(opt, 'track')
     hold on
     plot3(rx(1:i),ry(1:i),rz(1:i),'g-', 'LineWidth',1.5)
     plot3(px(1:i),py(1:i),pz(1:i),'r-', 'LineWidth',0.1)
-    title(['Time is :' num2str(i*endTime/length(qList)) 's'])
+    %title(['Time is :' num2str(i*endTime/length(qList)) 's'])
     hold off
     end
 end
@@ -117,7 +121,6 @@ for i=1:length(qList)
 phiList(:,i)=phi(qList(i,:),tspan(i));
 dphiList(:,i)=dphi(qList(i,:),dqList(i,:),tspan(i));
 end
-
 figure
 plot(tspan,phiList(1,:),'r--',tspan,phiList(2,:),'g--',tspan,phiList(3,:),'b--');
 legend('x','y','z')

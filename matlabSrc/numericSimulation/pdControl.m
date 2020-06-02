@@ -17,7 +17,7 @@ for i = 1:steps
     ddq=M(q)\(Q(q,dq) + u(q,dq,kp,kd));
     dq = dq + ddq'*dt;
     q = q + dq*dt;
-    %q(2) = noise(dt*i,2,0.02,10) + q(2);
+    q(2) = noise(dt*i,2,0.02,10) + q(2);
     qlist(i+1,:) = q;
     dqlist(i+1,:)=dq;
     disp(['run at: ' num2str(i*100/steps) '%']);

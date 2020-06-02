@@ -7,13 +7,8 @@ d=[0.089459,0,0,0.10915,0.09465,0.0823];
 for i=1:DOF
 ur5Link(i) = Link([0,d(i),a(i),alpha(i)],'standard');
 end
-
-ur5=SerialLink(ur5Link,'name','ur5');
+UR5=SerialLink(ur5Link,'name','');
 W=[-1.5, 1.5 -1.5  1.5 -1.5 1.5 ];
-%ur5.teach([0,0,0,0,0,0],'workspace',W,'noshading','jaxes')	
-%ur5.teach([-pi/2,-pi/2,0,-pi/2,0,0])
-
-
 %% dynamics parameters
 m=[3.7,8.393,2.33,1.219,1.219,0.1632];
 grav=[0,0,9.81];
@@ -34,14 +29,12 @@ r=[pc1';pc2';pc3';pc4';pc5';pc6'];
 [Ix(4),Iy(4),Iz(4)]=deal(9.09e-4,0.00119,0.00119);
 [Ix(5),Iy(5),Iz(5)]=deal(9.09e-4,0.00119,0.00119);
 [Ix(6),Iy(6),Iz(6)]=deal( 1.22e-4,8.21e-5,8.21e-5);
-
-
 for i=1:DOF
-ur5.links(i).qlim=[-2*pi,2*pi];   
-ur5.links(i).I=[Ix(i),Iy(i),Iz(i)];
-ur5.links(i).Jm=0;
-ur5.links(i).G=0;
-ur5.links(i).Tc=0;
-ur5.links(i).r=[r(i,1),r(i,2),r(i,3)];
-ur5.links(i).m=m(i);
+UR5.links(i).qlim=[-2*pi,2*pi];   
+UR5.links(i).I=[Ix(i),Iy(i),Iz(i)];
+UR5.links(i).Jm=0;
+UR5.links(i).G=0;
+%ur5.links(i).Tc=0;
+UR5.links(i).r=[r(i,1),r(i,2),r(i,3)];
+UR5.links(i).m=m(i);
 end

@@ -1,6 +1,6 @@
 clear all
 ur5_model;
-tic
+
 for j=1:1000
 qtest=rand(1,6);
 qdtest=rand(1,6); 
@@ -9,9 +9,9 @@ rtbRNE=ur5.rne_dh(qtest,qdtest,qddtest);
 myRNE=rneOFur5(qtest,qdtest,qddtest,grav);
 if abs(myRNE-rtbRNE)>1e-12
      error('Dynamics model is wrong!');
- end
 end
-toc
+end
+
 
 
 %% 
