@@ -84,13 +84,12 @@ if strcmp(opt, 'track')
         pose(i,:)= ur5FK(qList(i,:));
     end
     [px,py,pz] = deal(pose(:,1),pose(:,2),pose(:,3));
-    %figure
     for i = 1:speed:length(qList)
     ur5.plot(qList(i,:))
     hold on
     plot3(rx(1:i),ry(1:i),rz(1:i),'g-', 'LineWidth',1.5)
     plot3(px(1:i),py(1:i),pz(1:i),'r-', 'LineWidth',0.1)
-    %title(['Time is :' num2str(i*endTime/length(qList)) 's'])
+    title(['Running to the :' num2str(i*endTime/length(qList)) 's'])
     hold off
     end
 end

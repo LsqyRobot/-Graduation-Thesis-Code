@@ -4,10 +4,10 @@ clc
 close all
 warning off
 tic
-q = rand(1,6); 
+q = zeros(1,6); 
 dq = zeros(1,6);
 endTime = 10;
-steps = 2000;
+steps = 20000;
 dt = endTime/steps;
 [qlist, dqlist] = deal(zeros(length(0:dt:endTime),6));
 qlist(1,:) = q;

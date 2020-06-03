@@ -1,5 +1,7 @@
 
 young;
+qing = 0.055*qing;
+chun = 0.055*chun;
 obtainQ1 = zeros(length(qing),6);
 obtainQ2 = zeros(length(chun),6);
 for i = 1:length(qing)

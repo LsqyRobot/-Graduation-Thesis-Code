@@ -1,8 +1,7 @@
-%% The motion of the manipulator only influenced by gravity
+
 clear all
 clc
-%warning off
-q = 2*rand(1,6);  %replace it
+q = zeros(1,6);          %replace it
 dq = zeros(1,6);
 endTime = 10;
 steps = 2000;
@@ -36,5 +35,5 @@ save([savePath saveName],'qlist','dqlist','endTime')
 function y = u(q,dq,kp,kd)
 q = q(:);
 dq = dq(:);
-y = M(q)*(-kd*dq - kp*q) + Q(q,dq);
+y = M(q)*(-kd*dq - kp*q) - Q(q,dq);
 end
