@@ -1,13 +1,13 @@
-%% The motion of the manipulator only influenced by gravity
+%% The motion of the manipulator (only influenced by gravity)
 clear all
 clc
 close all
 warning off
 tic
-q = zeros(1,6); 
+q = rand(1,6); 
 dq = zeros(1,6);
-endTime = 10;
-steps = 20000;
+endTime = 5;
+steps = 2000;
 dt = endTime/steps;
 [qlist, dqlist] = deal(zeros(length(0:dt:endTime),6));
 qlist(1,:) = q;

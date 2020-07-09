@@ -72,6 +72,7 @@ if strcmp(opt, 'pose')
         ur5.plot(qList(i,:))
         hold on   
         plot3(px(1:i),py(1:i),pz(1:i),'r-', 'LineWidth',1)
+        title(['Running to the :' num2str(i*endTime/length(qList)) 's'])
         hold off
         end
 end
