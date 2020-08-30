@@ -23,11 +23,3 @@ qlist = obtainQ2;
 saveName = 'Chun';
 savePath = './matFile/';
 save([savePath saveName],'qlist')
-
-
-% this.qlist = obtainQ1;
-% plotFcn(this,'pose')
-% hold on
-% this.qlist = obtainQ2;
-% plotFcn(this,'pose')
-% hold off

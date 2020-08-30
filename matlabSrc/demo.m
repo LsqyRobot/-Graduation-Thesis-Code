@@ -4,13 +4,11 @@
 %   > Mail: lsqyRobot@gmail.com 
 %   > Created Time: Sun May  3 07:36:58 2020
 %***********************************************************************/
-function robotGUI
-Colormaps = {'parula', 'jet', 'hsv', 'hot', 'cool', 'spring', 'summer', 'autumn', 'winter', 'gray', 'bone', 'copper','pink'};
+function demo()
 addpath(genpath(pwd));
 fig.robot = figure('NumberTitle','off','Name','lsqyRobot','Menubar','none');
 set(fig.robot,'Units','normalized','Position',[0.2,0.2,0.7,0.7])
 robotInit;
-
 fig.hp = uipanel('Title','Control Panel','FontSize',12,...
              'BackgroundColor','white');    
 fig.onlyGrav=uicontrol('Parent',fig.robot, ...
