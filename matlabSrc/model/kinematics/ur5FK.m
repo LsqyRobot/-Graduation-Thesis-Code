@@ -29,3 +29,6 @@ beta = atan(R(1,3)*cos(alpha)/R(1,1));
 gamma = -atan2(R(2,3), R(3,3));
 poseRef=[P(1),P(2),P(3),alpha,beta,gamma];
 end
+
+
+

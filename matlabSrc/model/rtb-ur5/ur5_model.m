@@ -41,7 +41,6 @@ ur5.links(i).qlim=[-2*pi,2*pi];
 ur5.links(i).I=[Ix(i),Iy(i),Iz(i)];
 ur5.links(i).Jm=0;
 ur5.links(i).G=0;
-ur5.links(i).Tc=0;
 ur5.links(i).r=[r(i,1),r(i,2),r(i,3)];
 ur5.links(i).m=m(i);
 end

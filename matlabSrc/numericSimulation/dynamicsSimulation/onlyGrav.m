@@ -1,32 +1,21 @@
 %% The motion of the manipulator (only influenced by gravity)
-clear all
 clc
+clear all
 close all
-warning off
-tic
 q = rand(1,6); 
 dq = zeros(1,6);
 endTime = 5;
-steps = 2000;
+steps = 1000;
 dt = endTime/steps;
-[qlist, dqlist] = deal(zeros(length(0:dt:endTime),6));
-qlist(1,:) = q;
-dqlist(1,:) =dq;
 ur5_model;
+speed = 5;
+tic
 for i = 1:steps
-    ddq=M(q)\(Q(q,dq));
-    dq = dq + ddq'*dt;
-    q = q + dq*dt;
-    qlist(i+1,:) = q;
-    dqlist(i+1,:)=dq;
-    disp(['run at: ' num2str(i*100/steps) '%']);
+	ddq=M(q)\(-C(q,dq)*dq(:) - G(q)');
+	dq = dq + ddq'*dt;
+	q = q + dq*dt;
+	if mod(i,speed) == 0
+	      ur5.plot(q);
+	end	      
 end
 toc
-this.qList = qlist;
-this.dqList = dqlist;
-this.endTime = endTime;
-plotFcn(this,'pose')
-
-saveName = 'onlyGrav';
-savePath = './matFile/';
-save([savePath saveName],'qlist','dqlist','endTime')

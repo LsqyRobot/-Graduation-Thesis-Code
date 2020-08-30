@@ -230,3 +230,11 @@ xlabel(a4,'t/s')
 ylabel(a4,'$\dot{e}$/m','Interpreter','latex')
 
 end
+
+
+function robotInit
+	ur5_model;
+	qz = zeros(1,6);
+	ur5.plot(qz);
+end
+
