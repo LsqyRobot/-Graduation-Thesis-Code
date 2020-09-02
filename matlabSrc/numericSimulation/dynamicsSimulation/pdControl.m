@@ -12,8 +12,8 @@ kp = 500;
 kd = 50;
 
 for i = 1:steps
-    tau_d = 100*rand(6,1)*(i<20);
-    ddq=M(q)\(Q(q,dq) + u(q,dq,kp,kd) + tau_d);
+    tau_dis = 200*rand(6,1)*(i<20);
+    ddq=M(q)\(Q(q,dq) + u(q,dq,kp,kd) + tau_dis);
     dq = dq + ddq'*dt;
     q = q + dq*dt;
     if mod(i,speed) == 0
@@ -30,3 +30,16 @@ end
 function y = Q(q,dq)
 y = -C(q,dq)*dq' - G(q)';
 end
+
+
+function error(qd,dq,ddq,t)
+% Here you can input what you desired trajactory,
+qd(6) = 0
+
+
+
+
+
+
+
+
