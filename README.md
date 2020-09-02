@@ -1,4 +1,4 @@
-![](https://github.com/LsqyRobot/-Graduation-Thesis-Code/tree/master/matlabSrc/imgs/kidding.svg)
+![](https://github.com/LsqyRobot/-Graduation-Thesis-Code/blob/master/matlabSrc/imgs/kidding.svg)
 
 # -Graduation-Thesis-Code
 
